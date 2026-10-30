@@ -1,0 +1,106 @@
+import java.util.*;
+public class sort2dMatrix {
+
+// Input: mat[][] = { {1, 6, 10}, {8, 5, 9}, {9, 4, 15}, {7, 3, 60} }
+// Output:
+// 1 3 9
+// 7 4 10
+// 8 5 15
+// 9 6 60
+// Explanation:
+// The input matrix is sorted in a column wise manner,  
+// 1 < 7 < 8 < 9
+// 3 < 4 < 5 < 6
+// 9 < 10 < 15 < 60
+
+
+// Approach: Follow the steps below to solve the problem:
+
+// Traverse the matrix
+// Find the transpose of the given matrix mat[][].
+// Store this transpose of mat[][] in a 2D vector, tr[][]
+// Traverse the rows of the matrix tr[][]
+// Sort each row of the matrix using the sort function.
+// Store the transpose of tr[][] in mat[][]
+// Print the matrix, mat[][]
+
+// Function to find the transpose
+// of the matrix mat[]
+static int[][] transpose(int[][] mat, int row,
+                         int col)
+{
+    
+    // Stores the transpose
+    // of matrix mat[][]
+    int[][] tr = new int[col][row];
+
+    // Traverse each row of the matrix
+    for(int i = 0; i < row; i++)
+    {
+        
+        // Traverse each column of the matrix
+        for(int j = 0; j < col; j++)
+        {
+            
+            // Transpose matrix elements
+            tr[j][i] = mat[i][j];
+        }
+    }
+    return tr;
+}
+
+// Function to sort the given
+// matrix in row wise manner
+static void RowWiseSort(int[][] B)
+{
+    
+    // Traverse the row
+    for(int i = 0; i < (int)B.length; i++) 
+    {
+        
+        // Row - Wise Sorting
+        Arrays.sort(B[i]);
+    }
+}
+
+// Function to print the matrix
+// in column wise sorted manner
+static void sortCol(int[][] mat, int N, int M)
+{
+    
+    // Function call to find transpose
+    // of the matrix mat[][]
+    int[][] B = transpose(mat, N, M);
+
+    // Sorting the matrix row-wise
+    RowWiseSort(B);
+
+    // Calculate transpose of B[][]
+    mat = transpose(B, M, N);
+
+    // Print the matrix mat[][]
+    for(int i = 0; i < N; i++) 
+    {
+        for(int j = 0; j < M; j++) 
+        {
+            System.out.print(mat[i][j] + " ");
+        }
+        System.out.println();
+    }
+}
+
+
+public static void main(String[] args)
+{
+    
+    int[][] mat = { { 1, 6, 10 },
+                    { 8, 5, 9 },
+                    { 9, 4, 15 },
+                    { 7, 3, 60 } };
+
+    int N = mat.length;
+    int M = mat[0].length;
+
+    sortCol(mat, N, M);
+}
+}
