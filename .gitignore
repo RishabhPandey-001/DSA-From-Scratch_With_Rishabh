@@ -1,0 +1,11 @@
+
+# Ignore nested Git backups
+**/.git-backup/
+
+
+# Ignore compiled Java files
+*.class
+
+# Ignore temporary files
+*.tmp
+~$*
